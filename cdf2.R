@@ -77,11 +77,12 @@ dev.off()
 
 
 
-data1 <- read.csv("pro01-5-1-1Overhead.csv", header=F, sep="\t")
+data1 <- read.csv("pro01-10-1-1Overhead.csv", header=F, sep="\t")
 data2 <- read.csv("re01-1-1-1Overhead.csv", header=F, sep="\t")
 
-pdf(file="Overhead-01-5-1-1.pdf", paper="special", width=7, height=4)
-average=filter(data1, rep(1/5,5))
+pdf(file="Overhead-01-10-1-1.pdf", paper="special", width=7, height=4)
+average=filter(data1, rep(1/10,10))
+data1[,2]=average[,2]
 #
 par(mar=c(3.3, 4.5, 1.5, 0.3))
 par(mgp = c(2, 1, 0))
@@ -91,17 +92,8 @@ par(las=1)
 
 print(data2[,2])
 print("-----------------")
-average[,2]=as.integer(average[,2])
-average[1,2]=average[3,2]
-average[2,2]=average[3,2]
-average[999,2]=average[998,2]
-average[1000,2]=average[998,2]
-average[1,1]=0
-average[2,1]=1
-average[999,1]=998
-average[1000,1]=999
 print(average[,2])
-data1[,2]=average[,2]
+#data1[,2]=average[,2]
 plot(data2[,1], data2[,2], type="l", lty=plot_type[3], axes=TRUE, ann=FALSE, cex.axis=1.3, col="white")#, main=heading)
 lines(data1[,1], data1[,2], lty=plot_type[1], lwd=5, col=plot_colors[1])
 lines(data2[,1], data2[,2], lty=plot_type[2], lwd=5, col=plot_colors[2])
